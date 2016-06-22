@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackWidg">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="entry">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -80,6 +80,9 @@
               </item>
               <item row="1" column="0">
                <widget class="QPushButton" name="remBt">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string>Remove</string>
                 </property>
@@ -211,6 +214,23 @@
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>Width:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="marginSB">
+                <property name="minimum">
+                 <number>25</number>
+                </property>
+                <property name="value">
+                 <number>75</number>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -250,16 +270,6 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="2">
-         <widget class="QPushButton" name="copyBt">
-          <property name="text">
-           <string>Copy</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="3">
-         <widget class="QPlainTextEdit" name="dataTE"/>
-        </item>
         <item row="0" column="1">
          <spacer name="horizontalSpacer_4">
           <property name="orientation">
@@ -273,6 +283,13 @@
           </property>
          </spacer>
         </item>
+        <item row="5" column="3">
+         <widget class="QPushButton" name="copyBt">
+          <property name="text">
+           <string>Copy</string>
+          </property>
+         </widget>
+        </item>
         <item row="5" column="1">
          <spacer name="horizontalSpacer_5">
           <property name="orientation">
@@ -285,6 +302,16 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="3" column="0" colspan="4">
+         <widget class="QPlainTextEdit" name="dataTE"/>
+        </item>
+        <item row="5" column="2">
+         <widget class="QLabel" name="copiedLbl">
+          <property name="text">
+           <string>Copied!</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -305,17 +332,11 @@
     <property name="title">
      <string>Menu</string>
     </property>
-    <addaction name="actionKeyboard_Shortcuts"/>
     <addaction name="actionAbout"/>
     <addaction name="actionHelp"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
-  <action name="actionKeyboard_Shortcuts">
-   <property name="text">
-    <string>Keyboard Shortcuts</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
@@ -323,7 +344,7 @@
   </action>
   <action name="actionHelp">
    <property name="text">
-    <string>Help</string>
+    <string>Help and Hints</string>
    </property>
   </action>
  </widget>

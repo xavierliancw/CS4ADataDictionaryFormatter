@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QClipboard>
+#include <QShortcut>
+#include <QGraphicsOpacityEffect>
+#include <QPropertyAnimation>
+#include <QDebug>
 
 namespace Ui {
 class zMainWindow;
@@ -16,6 +20,7 @@ class zMainWindow : public QMainWindow
 public:
     explicit zMainWindow(QWidget *parent = 0);
     ~zMainWindow();
+    QString stringWrap(QString wrapThis, int start, int stop);
 
 private slots:
     void on_addBt_clicked();
@@ -37,6 +42,12 @@ private slots:
     void on_backBt_clicked();
 
     void on_copyBt_clicked();
+
+    void on_actionHelp_triggered();
+
+    void on_actionAbout_triggered();
+
+    void hide_copiedLbl();
 
 private:
     Ui::zMainWindow *ui;
