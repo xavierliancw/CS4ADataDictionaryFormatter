@@ -20,10 +20,12 @@ class zMainWindow : public QMainWindow
 public:
     explicit zMainWindow(QWidget *parent = 0);
     ~zMainWindow();
-    QString stringWrap(QString wrapThis, int start, int stop);
+    QString StringWrap(QString wrapThis, int start, int stop);
 
 private slots:
     void on_addBt_clicked();
+
+    void on_constTbl_cellChanged(/*int row, */int column);
 
     void on_dataTbl_cellChanged(/*int row, */int column);
 
@@ -48,6 +50,8 @@ private slots:
     void on_actionAbout_triggered();
 
     void hide_copiedLbl();
+
+    void check_constCB();
 
 private:
     Ui::zMainWindow *ui;
