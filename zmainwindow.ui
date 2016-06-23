@@ -427,6 +427,7 @@
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionHelp"/>
+    <addaction name="actionFeedback"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -438,6 +439,11 @@
   <action name="actionHelp">
    <property name="text">
     <string>Help and Hints</string>
+   </property>
+  </action>
+  <action name="actionFeedback">
+   <property name="text">
+    <string>Feedback</string>
    </property>
   </action>
  </widget>

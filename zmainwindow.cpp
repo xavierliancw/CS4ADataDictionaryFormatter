@@ -538,3 +538,21 @@ void zMainWindow::check_constCB()
         ui->consLbl->setText("Constants");
     }
 }
+
+void zMainWindow::on_actionFeedback_triggered()
+//Opens feedback information window
+{
+    QMessageBox::information(this, tr("Feedback Please! ( ͡° ͜ʖ ͡°)"),
+                             tr("Created by Xavier Lian\n"
+                                "Email me at xavierliancw@gmail.com and "
+                                "leave some feedback on this program.\n\n"
+                                "Let me know what should be changed, "
+                                "added, and/or improved.\n\n"
+                                "If you think you can add stuff "
+                                "yourself, fork my repository on GitHub, "
+                                "then submit a pull request when you're "
+                                "done.\n\n"
+                                "The repo is: "
+           "https://github.com/xavierliancw/CS4ADataDictionaryFormatter"),
+                             QMessageBox::Ok);
+}
