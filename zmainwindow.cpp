@@ -19,7 +19,19 @@ ui(new Ui::zMainWindow)
     ui->dataTbl->setHorizontalHeaderLabels(QStringList() << "Name"
                                            << "Type" << "Value Range"
                                            << "Description");
+    ui->dataTbl->resizeColumnsToContents();
+    ui->constTbl->resizeColumnsToContents();
     ui->copiedLbl->setText("");
+    if (ui->constCB->isChecked())
+    {
+        ui->consLbl->setText("Constants <- (Selected)");
+        ui->varsLbl->setText("Variables");
+    }
+    else
+    {
+        ui->varsLbl->setText("Variables <- (Selected)");
+        ui->consLbl->setText("Constants");
+    }
 
     if (ui->stackWidg->currentIndex() == 0)
     {
@@ -101,74 +113,96 @@ void zMainWindow::on_addBt_clicked()
     //Validate that the variable name field isn't emtpy
     if (ui->nameLE->text() != "")
     {
-        QTableWidgetItem *item; //Item to populate table cell
-
-        //If adding a constant
-        if (ui->constCB->isChecked())
+        //Validate that there are no spaces in the name
+        QString check = ui->nameLE->text(); //String to check
+        bool hasSp = false;                 //Validation bool
+        for (int x = 0; x < check.size(); x++)
         {
-            //Add an entry to the const table
-            ui->constTbl->insertRow(ui->constTbl->rowCount());
-
-            //Populate first column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->nameLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount() - 1,0,item);
-
-            //Populate second column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->typeLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount() - 1,1,item);
-
-            //Populate third column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->valLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount() - 1,2,item);
-
-            //Populate fourth column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->descLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount() - 1,3,item);
-
-            //Resize columns and sort alphabetically
-            ui->constTbl->resizeColumnsToContents();
-            ui->constTbl->sortByColumn(0,Qt::AscendingOrder);
+            if (check[x] == ' ')
+            {
+                hasSp = true;
+                x = check.size();
+            }
         }
-        //Otherwise it's a variable
+        if (!hasSp)
+        {
+            QTableWidgetItem *item; //Item to populate table cell
+
+            //If adding a constant
+            if (ui->constCB->isChecked())
+            {
+                //Add an entry to the const table
+                ui->constTbl->insertRow(ui->constTbl->rowCount());
+
+                //Populate first column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->nameLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,0,item);
+
+                //Populate second column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->typeLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,1,item);
+
+                //Populate third column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->valLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,2,item);
+
+                //Populate fourth column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->descLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,3,item);
+
+                //Resize columns and sort alphabetically
+                ui->constTbl->resizeColumnsToContents();
+                ui->constTbl->sortByColumn(0,Qt::AscendingOrder);
+            }
+            //Otherwise it's a variable
+            else
+            {
+                //Add an entry to the data table
+                ui->dataTbl->insertRow(ui->dataTbl->rowCount());
+
+                //Populate first column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->nameLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,0,item);
+
+                //Populate second column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->typeLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,1,item);
+
+                //Populate third column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->valLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,2,item);
+
+                //Populate fourth column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->descLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,3,item);
+
+                //Resize columns and sort alphabetically
+                ui->dataTbl->resizeColumnsToContents();
+                ui->dataTbl->sortByColumn(0,Qt::AscendingOrder);
+            }
+            //Clear all fields and reset focus
+            ui->nameLE->clear();
+            ui->typeLE->clear();
+            ui->valLE->clear();
+            ui->descLE->clear();
+            ui->nameLE->setFocus();
+        }
+        //Otherwise show an error window
         else
         {
-            //Add an entry to the data table
-            ui->dataTbl->insertRow(ui->dataTbl->rowCount());
-
-            //Populate first column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->nameLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,0,item);
-
-            //Populate second column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->typeLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,1,item);
-
-            //Populate third column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->valLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,2,item);
-
-            //Populate fourth column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->descLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,3,item);
-
-            //Resize columns and sort alphabetically
-            ui->dataTbl->resizeColumnsToContents();
-            ui->dataTbl->sortByColumn(0,Qt::AscendingOrder);
+            QMessageBox::warning(this, tr("Name Error"),
+                                 tr("Name cannot have spaces."),
+                                 QMessageBox::Ok);
+            ui->nameLE->setFocus();
         }
-        //Clear all fields and reset focus
-        ui->nameLE->clear();
-        ui->typeLE->clear();
-        ui->valLE->clear();
-        ui->descLE->clear();
-        ui->nameLE->setFocus();
     }
     //Otherwise show an error window if it is
     else
@@ -465,11 +499,10 @@ void zMainWindow::on_actionHelp_triggered()
 //Show Help window
 {
     QMessageBox::information(this, tr("Help & Hints"),
-                             tr("CTRL + SHIFT + C on the results page "
-                                "will automatically copy the final data "
-                                "table, so no clicking is necessary.\n"
+                             tr("To enter data faster, use RETURN "
+                                "instead of TAB to navigate the fields.\n"
                                 "CTRL + RETURN will immediately "
-                                "generate the data table."),
+                                "generate the data table.\n"),
                              QMessageBox::Ok);
 }
 
@@ -477,7 +510,7 @@ void zMainWindow::on_actionAbout_triggered()
 //Show About window
 {
     QMessageBox::information(this, tr("About"),
-                             tr("Version 0.3\n"
+                             tr("Version 0.5\n"
                                 "Created by Xavier Lian\n"
                                 "22 June 2016 for Computer Science 4A"),
                              QMessageBox::Ok);
@@ -490,5 +523,18 @@ void zMainWindow::hide_copiedLbl()
 }
 
 void zMainWindow::check_constCB()
-//Checks or unchecks constCB
-{ui->constCB->click();ui->nameLE->setFocus();}
+//Checks or unchecks constCB and other things
+{
+    ui->constCB->click();
+    ui->nameLE->setFocus();
+    if (ui->constCB->isChecked())
+    {
+        ui->consLbl->setText("Constants <- (Selected)");
+        ui->varsLbl->setText("Variables");
+    }
+    else
+    {
+        ui->varsLbl->setText("Variables <- (Selected)");
+        ui->consLbl->setText("Constants");
+    }
+}
