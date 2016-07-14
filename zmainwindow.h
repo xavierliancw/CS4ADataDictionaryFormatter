@@ -53,6 +53,8 @@ private slots:
 
     void check_constCB();
 
+    void on_actionFeedback_triggered();
+
 private:
     Ui::zMainWindow *ui;
 };
