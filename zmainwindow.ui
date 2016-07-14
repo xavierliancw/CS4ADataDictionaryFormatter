@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackWidg">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="entry">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -154,19 +154,6 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="marginSB">
-                <property name="focusPolicy">
-                 <enum>Qt::NoFocus</enum>
-                </property>
-                <property name="minimum">
-                 <number>25</number>
-                </property>
-                <property name="value">
-                 <number>75</number>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="0" colspan="2">
                <widget class="QCheckBox" name="constCB">
                 <property name="focusPolicy">
@@ -203,6 +190,16 @@
                 </property>
                </spacer>
               </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="marginSB">
+                <property name="minimum">
+                 <number>25</number>
+                </property>
+                <property name="value">
+                 <number>75</number>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -233,19 +230,10 @@
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
-              <item row="4" column="2">
-               <widget class="QPushButton" name="genBt">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="focusPolicy">
-                 <enum>Qt::NoFocus</enum>
-                </property>
+              <item row="2" column="0">
+               <widget class="QLabel" name="varsLbl">
                 <property name="text">
-                 <string>Generate</string>
+                 <string>Variables</string>
                 </property>
                </widget>
               </item>
@@ -326,10 +314,19 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="varsLbl">
+              <item row="4" column="2">
+               <widget class="QPushButton" name="genBt">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
-                 <string>Variables</string>
+                 <string>Generate</string>
                 </property>
                </widget>
               </item>
@@ -343,8 +340,32 @@
       </widget>
       <widget class="QWidget" name="result">
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="1">
-         <spacer name="horizontalSpacer_4">
+        <item row="3" column="0" colspan="4">
+         <widget class="QPlainTextEdit" name="dataTE"/>
+        </item>
+        <item row="5" column="3">
+         <widget class="QPushButton" name="copyBt">
+          <property name="text">
+           <string>Copy</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>NOTE: Table looks messed up here, but it'll be fine when you paste it.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QLabel" name="copiedLbl">
+          <property name="text">
+           <string>Copied!</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <spacer name="horizontalSpacer_5">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -369,8 +390,8 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <spacer name="horizontalSpacer_5">
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer_4">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -381,30 +402,6 @@
            </size>
           </property>
          </spacer>
-        </item>
-        <item row="5" column="2">
-         <widget class="QLabel" name="copiedLbl">
-          <property name="text">
-           <string>Copied!</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="4">
-         <widget class="QPlainTextEdit" name="dataTE"/>
-        </item>
-        <item row="5" column="3">
-         <widget class="QPushButton" name="copyBt">
-          <property name="text">
-           <string>Copy</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>NOTE: Table looks messed up here, but it'll be fine when you paste it.</string>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>
@@ -453,10 +450,11 @@
   <tabstop>typeLE</tabstop>
   <tabstop>valLE</tabstop>
   <tabstop>descLE</tabstop>
+  <tabstop>marginSB</tabstop>
   <tabstop>constTbl</tabstop>
   <tabstop>dataTbl</tabstop>
-  <tabstop>backBt</tabstop>
   <tabstop>copyBt</tabstop>
+  <tabstop>backBt</tabstop>
   <tabstop>dataTE</tabstop>
  </tabstops>
  <resources/>
