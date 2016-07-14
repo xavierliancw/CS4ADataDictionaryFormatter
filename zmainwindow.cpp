@@ -41,6 +41,9 @@ ui(new Ui::zMainWindow)
         //Shortcut to switch between constant and variable mode
         new QShortcut(QKeySequence(Qt::ALT + Qt::Key_C),
                       this, SLOT(check_constCB()));
+        //Shortcut to focus name field
+        new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_L),
+                      this, SLOT(focus_name()));
     }
     //Shortcut to straight up copy the final data table without clicking
     if (ui->stackWidg->currentIndex() == 1)
@@ -113,74 +116,89 @@ void zMainWindow::on_addBt_clicked()
     //Validate that the variable name field isn't emtpy
     if (ui->nameLE->text() != "")
     {
-        QTableWidgetItem *item; //Item to populate table cell
-
-        //If adding a constant
-        if (ui->constCB->isChecked())
+        int ret;
+        //Check if any fields are blank
+        if (ui->nameLE->text() == "" || ui->typeLE->text() == ""
+            || ui->valLE->text() == "" || ui->descLE->text() == "")
         {
-            //Add an entry to the const table
-            ui->constTbl->insertRow(ui->constTbl->rowCount());
-
-            //Populate first column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->nameLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount()- 1,0,item);
-
-            //Populate second column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->typeLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount()- 1,1,item);
-
-            //Populate third column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->valLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount()- 1,2,item);
-
-            //Populate fourth column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->descLE->text());
-            ui->constTbl->setItem(ui->constTbl->rowCount()- 1,3,item);
-
-            //Resize columns and sort alphabetically
-            ui->constTbl->resizeColumnsToContents();
-            ui->constTbl->sortByColumn(0,Qt::AscendingOrder);
+            ret = QMessageBox::information(this, tr("Blank Fields"),
+                                           tr("Hey, there are some "
+                                              "blank fields.\nDo you "
+                                              "want to proceed?"),
+                                           QMessageBox::Yes,
+                                           QMessageBox::No);
         }
-        //Otherwise it's a variable
-        else
+        if (ret == QMessageBox::Yes)
         {
-            //Add an entry to the data table
-            ui->dataTbl->insertRow(ui->dataTbl->rowCount());
+            QTableWidgetItem *item; //Item to populate table cell
 
-            //Populate first column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->nameLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,0,item);
+            //If adding a constant
+            if (ui->constCB->isChecked())
+            {
+                //Add an entry to the const table
+                ui->constTbl->insertRow(ui->constTbl->rowCount());
 
-            //Populate second column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->typeLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,1,item);
+                //Populate first column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->nameLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,0,item);
 
-            //Populate third column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->valLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,2,item);
+                //Populate second column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->typeLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,1,item);
 
-            //Populate fourth column
-            item = new QTableWidgetItem;
-            item->setData(0,ui->descLE->text());
-            ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,3,item);
+                //Populate third column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->valLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,2,item);
 
-            //Resize columns and sort alphabetically
-            ui->dataTbl->resizeColumnsToContents();
-            ui->dataTbl->sortByColumn(0,Qt::AscendingOrder);
+                //Populate fourth column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->descLE->text());
+                ui->constTbl->setItem(ui->constTbl->rowCount()- 1,3,item);
+
+                //Resize columns and sort alphabetically
+                ui->constTbl->resizeColumnsToContents();
+                ui->constTbl->sortByColumn(0,Qt::AscendingOrder);
+            }
+            //Otherwise it's a variable
+            else
+            {
+                //Add an entry to the data table
+                ui->dataTbl->insertRow(ui->dataTbl->rowCount());
+
+                //Populate first column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->nameLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,0,item);
+
+                //Populate second column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->typeLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,1,item);
+
+                //Populate third column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->valLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,2,item);
+
+                //Populate fourth column
+                item = new QTableWidgetItem;
+                item->setData(0,ui->descLE->text());
+                ui->dataTbl->setItem(ui->dataTbl->rowCount() - 1,3,item);
+
+                //Resize columns and sort alphabetically
+                ui->dataTbl->resizeColumnsToContents();
+                ui->dataTbl->sortByColumn(0,Qt::AscendingOrder);
+            }
+            //Clear all fields and reset focus
+            ui->nameLE->clear();
+            ui->typeLE->clear();
+            ui->valLE->clear();
+            ui->descLE->clear();
+            ui->nameLE->setFocus();
         }
-        //Clear all fields and reset focus
-        ui->nameLE->clear();
-        ui->typeLE->clear();
-        ui->valLE->clear();
-        ui->descLE->clear();
-        ui->nameLE->setFocus();
     }
     //Otherwise show an error window if it is blank
     else
@@ -256,12 +274,6 @@ void zMainWindow::on_genBt_clicked()
     int namSp = 4;      //Width of name column (Default value)
     int typSp = 7;      //Width of type column
     int valSp = 11;     //Width of value range column
-
-    //Clear fields on the entry page
-    ui->nameLE->clear();
-    ui->typeLE->clear();
-    ui->valLE->clear();
-    ui->descLE->clear();
 
     //Loop until everything in dataTbl is read in
     for (int x = 0; x < ui->dataTbl->rowCount(); x++)
@@ -534,3 +546,7 @@ void zMainWindow::on_actionFeedback_triggered()
            "https://github.com/xavierliancw/CS4ADataDictionaryFormatter"),
                              QMessageBox::Ok);
 }
+
+void zMainWindow::focus_name()
+//Focuses name field and highlights all text within
+{ui->nameLE->setFocus(); ui->nameLE->selectAll();}

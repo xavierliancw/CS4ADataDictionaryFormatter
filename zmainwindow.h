@@ -55,6 +55,8 @@ private slots:
 
     void on_actionFeedback_triggered();
 
+    void focus_name();
+
 private:
     Ui::zMainWindow *ui;
 };
