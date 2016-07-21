@@ -41,10 +41,6 @@ private slots:
 
     void on_genBt_clicked();
 
-    void on_backBt_clicked();
-
-    void on_copyBt_clicked();
-
     void on_actionHelp_triggered();
 
     void on_actionAbout_triggered();
@@ -54,6 +50,8 @@ private slots:
     void check_constCB();
 
     void on_actionFeedback_triggered();
+
+    void focus_name();
 
 private:
     Ui::zMainWindow *ui;
