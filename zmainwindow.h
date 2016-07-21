@@ -41,10 +41,6 @@ private slots:
 
     void on_genBt_clicked();
 
-    void on_backBt_clicked();
-
-    void on_copyBt_clicked();
-
     void on_actionHelp_triggered();
 
     void on_actionAbout_triggered();

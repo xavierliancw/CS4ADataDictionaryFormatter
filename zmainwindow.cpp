@@ -7,7 +7,6 @@ ui(new Ui::zMainWindow)
 {
     //Initial UI setup
     ui->setupUi(this);
-    ui->stackWidg->setCurrentIndex(0);
     ui->nameLE->setFocus();
     ui->constTbl->setRowCount(0);
     ui->constTbl->setColumnCount(4);
@@ -21,7 +20,7 @@ ui(new Ui::zMainWindow)
                                            << "Description");
     ui->dataTbl->resizeColumnsToContents();
     ui->constTbl->resizeColumnsToContents();
-    ui->copiedLbl->setText("");
+//    ui->copiedLbl->setText("");
     if (ui->constCB->isChecked())
     {
         ui->consLbl->setText("Constants <- (Selected)");
@@ -32,26 +31,26 @@ ui(new Ui::zMainWindow)
         ui->varsLbl->setText("Variables <- (Selected)");
         ui->consLbl->setText("Constants");
     }
+    //Generate empty dictionary table
+    on_genBt_clicked();
 
-    if (ui->stackWidg->currentIndex() == 0)
+    //Fix the table's font so that it's monospaced (everything lines up)
+    QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+    ui->dataTE->setFont(fixedFont);
+
+    //Shortcut to generate table
+    int NOTWORKING;
+    if (ui->majorTW->currentIndex() == 1)   //This doesn't work
     {
-        //Shortcut to generate table
         new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return),
                       this, SLOT(on_genBt_clicked()));
-        //Shortcut to switch between constant and variable mode
-        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_C),
-                      this, SLOT(check_constCB()));
-        //Shortcut to focus name field
-        new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_L),
-                      this, SLOT(focus_name()));
     }
-    //Shortcut to straight up copy the final data table without clicking
-    if (ui->stackWidg->currentIndex() == 1)
-    {
-        int NOTWORKING;
-        new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return),
-                      this, SLOT(on_copyBt_clicked()));
-    }
+    //Shortcut to switch between constant and variable mode
+    new QShortcut(QKeySequence(Qt::ALT + Qt::Key_C),
+                  this, SLOT(check_constCB()));
+    //Shortcut to focus name field
+    new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_L),
+                  this, SLOT(focus_name()));
 }
 
 zMainWindow::~zMainWindow()
@@ -116,7 +115,7 @@ void zMainWindow::on_addBt_clicked()
     //Validate that the variable name field isn't emtpy
     if (ui->nameLE->text() != "")
     {
-        int ret;
+        int ret = QMessageBox::Yes;
         //Check if any fields are blank
         if (ui->nameLE->text() == "" || ui->typeLE->text() == ""
             || ui->valLE->text() == "" || ui->descLE->text() == "")
@@ -198,9 +197,12 @@ void zMainWindow::on_addBt_clicked()
             ui->valLE->clear();
             ui->descLE->clear();
             ui->nameLE->setFocus();
+
+            //Update the text edit to display live additions
+            on_genBt_clicked();
         }
     }
-    //Otherwise show an error window if it is blank
+    //Otherwise show an error window if name field is blank
     else
     {
         QMessageBox::warning(this, tr("Blank Name"),
@@ -260,6 +262,9 @@ void zMainWindow::on_remBt_clicked()
     }
     ui->constTbl->resizeColumnsToContents();
     ui->dataTbl->resizeColumnsToContents();
+
+    //Redraw table
+    on_genBt_clicked();
 }
 
 void zMainWindow::on_genBt_clicked()
@@ -422,7 +427,7 @@ void zMainWindow::on_genBt_clicked()
     //If there are no variables in the dataTbl
     if (ui->dataTbl->rowCount() == 0)
     {
-        finalData += "NO VARIABLES\n";
+        finalData += "NO VARIABLES";
     }
     //Otherwise add the data in
     else
@@ -450,39 +455,38 @@ void zMainWindow::on_genBt_clicked()
             finalData += " " + varVal;
             for (int s = 0; s < valSp - varVal.size(); s++)
             {finalData += " ";}
-            finalData += " " + varDesc + "\n";
+            finalData += " " + varDesc;
+
+            //Insert endlines between variables
+            if (x != ui->dataTbl->rowCount() - 1)
+            {
+                finalData += "\n";
+            }
         }
     }
 
     //Set up UI
     ui->dataTE->setPlainText(finalData);
-    ui->stackWidg->setCurrentIndex(1);
-}
 
-void zMainWindow::on_backBt_clicked()
-//Go back to the table builder
-{
-    ui->stackWidg->setCurrentIndex(0);
-    ui->dataTE->clear();
-}
-
-void zMainWindow::on_copyBt_clicked()
-//Copies table to the clipboard
-{
+    //Copy to clipboard
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(ui->dataTE->toPlainText());
-    ui->copiedLbl->setText("Copied!");
+//    ui->copiedLbl->setText("Copied!");
 
-    //Make the copied label fade out
-    QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
-    ui->copiedLbl->setGraphicsEffect(eff);
-    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
-    a->setDuration(10000);
-    a->setStartValue(1);
-    a->setEndValue(0);
-    a->setEasingCurve(QEasingCurve::OutBack);
-    a->start(QPropertyAnimation::DeleteWhenStopped);
-    connect(a,SIGNAL(finished()),this,SLOT(hide_copiedLbl()));
+//    //You're here figure out how to fade text in a push button.
+
+//    //Make the copied label fade out
+//    ui->genBt->setText("Copied!");
+//    QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+//    ui->copiedLbl->setGraphicsEffect(eff);
+//    ui->genBt->setGraphicsEffect(eff);
+//    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+//    a->setDuration(10000);
+//    a->setStartValue(1);
+//    a->setEndValue(0);
+//    a->setEasingCurve(QEasingCurve::OutBack);
+//    a->start(QPropertyAnimation::DeleteWhenStopped);
+//    connect(a,SIGNAL(finished()),this,SLOT(hide_copiedLbl()));
 }
 
 void zMainWindow::on_actionHelp_triggered()
@@ -500,33 +504,34 @@ void zMainWindow::on_actionAbout_triggered()
 //Show About window
 {
     QMessageBox::information(this, tr("About"),
-                             tr("Version 0.5\n"
+                             tr("Version 0.6\n"
                                 "Created by Xavier Lian\n"
-                                "22 June 2016 for Computer Science 4A"),
+                                "20 July 2016 for Computer Science 4A"),
                              QMessageBox::Ok);
 }
 
 void zMainWindow::hide_copiedLbl()
 //Hide copyLbl
 {
-    ui->copiedLbl->setText("");
+    //This used to be ui->copyBt or whatever it's called
+    ui->genBt->setText("Generate to Clipboard");
 }
 
 void zMainWindow::check_constCB()
 //Checks or unchecks constCB and other things
 {
-    ui->constCB->click();
-    ui->nameLE->setFocus();
-    if (ui->constCB->isChecked())
-    {
-        ui->consLbl->setText("Constants <- (Selected)");
-        ui->varsLbl->setText("Variables");
-    }
-    else
-    {
-        ui->varsLbl->setText("Variables <- (Selected)");
-        ui->consLbl->setText("Constants");
-    }
+//    ui->constCB->click();
+//    ui->nameLE->setFocus();
+//    if (ui->constCB->isChecked())
+//    {
+//        ui->consLbl->setText("Constants <- (Selected)");
+//        ui->varsLbl->setText("Variables");
+//    }
+//    else
+//    {
+//        ui->varsLbl->setText("Variables <- (Selected)");
+//        ui->consLbl->setText("Constants");
+//    }
 }
 
 void zMainWindow::on_actionFeedback_triggered()
