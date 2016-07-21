@@ -21,6 +21,7 @@ public:
     explicit zMainWindow(QWidget *parent = 0);
     ~zMainWindow();
     QString StringWrap(QString wrapThis, int start, int stop);
+    void generateMainDict();
 
 private slots:
     void on_addBt_clicked();
@@ -39,19 +40,29 @@ private slots:
 
     void on_remBt_clicked();
 
-    void on_genBt_clicked();
+    void on_copyMainBt_clicked();
 
     void on_actionHelp_triggered();
 
     void on_actionAbout_triggered();
-
-    void hide_copiedLbl();
 
     void check_constCB();
 
     void on_actionFeedback_triggered();
 
     void focus_name();
+
+    void on_descLE_textChanged(/*const QString &arg1*/);
+
+    void on_marginSB_valueChanged(int arg1);
+
+    void copy_view();
+
+    void on_constTbl_cellChanged(/*int row, int column*/);
+
+    void on_dataTbl_cellChanged(/*int row, int column*/);
+
+    void on_hideConstsCB_clicked();
 
 private:
     Ui::zMainWindow *ui;

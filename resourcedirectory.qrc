@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>APPDATA/copyicon.png</file>
+        <file>APPDATA/windowicon.png</file>
+    </qresource>
+</RCC>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>568</width>
-    <height>511</height>
+    <width>920</width>
+    <height>465</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,26 +15,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QFrame" name="frame_7">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <zorder>majorTW</zorder>
-     </widget>
-    </item>
     <item row="1" column="0">
      <widget class="QTabWidget" name="majorTW">
       <property name="tabShape">
@@ -55,12 +35,12 @@
          <rect>
           <x>130</x>
           <y>90</y>
-          <width>81</width>
+          <width>221</width>
           <height>16</height>
          </rect>
         </property>
         <property name="text">
-         <string>Coming Soon</string>
+         <string>To be implemented in a future version :P</string>
         </property>
        </widget>
       </widget>
@@ -71,6 +51,12 @@
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QTabWidget" name="tabWidget_2">
+          <property name="maximumSize">
+           <size>
+            <width>350</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="tabPosition">
            <enum>QTabWidget::South</enum>
           </property>
@@ -91,6 +77,18 @@
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QLabel" name="label_2">
                  <property name="text">
@@ -101,7 +99,7 @@
                <item>
                 <widget class="QLineEdit" name="nameLE">
                  <property name="toolTip">
-                  <string>Press CTRL+L to focus this field.</string>
+                  <string>(CTRL+L to focus)</string>
                  </property>
                 </widget>
                </item>
@@ -117,6 +115,18 @@
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QLabel" name="label_3">
                  <property name="text">
@@ -139,6 +149,18 @@
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_3">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QLabel" name="label_4">
                  <property name="text">
@@ -161,6 +183,18 @@
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
@@ -170,6 +204,108 @@
                </item>
                <item>
                 <widget class="QLineEdit" name="descLE"/>
+               </item>
+               <item>
+                <widget class="QLabel" name="tutDescLbl">
+                 <property name="font">
+                  <font>
+                   <pointsize>7</pointsize>
+                  </font>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="text">
+                  <string>Press return to add</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_6">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_5">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item row="1" column="3" colspan="2">
+                <widget class="QCheckBox" name="constCB">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="toolTip">
+                  <string>(ALT+C to check || uncheck)</string>
+                 </property>
+                 <property name="text">
+                  <string>Add to Constants</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QSpinBox" name="marginSB">
+                 <property name="minimum">
+                  <number>40</number>
+                 </property>
+                 <property name="value">
+                  <number>75</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Width:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="6">
+                <widget class="QPushButton" name="addBt">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3" colspan="2">
+                <widget class="QCheckBox" name="hideConstsCB">
+                 <property name="text">
+                  <string>Hide Constants</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="5" rowspan="3">
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
               </layout>
              </widget>
@@ -186,81 +322,6 @@
                </size>
               </property>
              </spacer>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_6">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_5">
-               <item row="0" column="2">
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="0" column="5" rowspan="2">
-                <widget class="QPushButton" name="addBt">
-                 <property name="focusPolicy">
-                  <enum>Qt::NoFocus</enum>
-                 </property>
-                 <property name="text">
-                  <string>Add</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="4">
-                <widget class="QSpinBox" name="marginSB">
-                 <property name="minimum">
-                  <number>25</number>
-                 </property>
-                 <property name="value">
-                  <number>75</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="0" column="3">
-                <widget class="QLabel" name="label">
-                 <property name="text">
-                  <string>Width:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3" colspan="2">
-                <widget class="QCheckBox" name="constCB">
-                 <property name="focusPolicy">
-                  <enum>Qt::NoFocus</enum>
-                 </property>
-                 <property name="text">
-                  <string>Add to Constants</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
             </item>
            </layout>
           </widget>
@@ -292,6 +353,9 @@
                    <width>0</width>
                    <height>0</height>
                   </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>Double click a cell to edit it.</string>
                  </property>
                  <property name="alternatingRowColors">
                   <bool>true</bool>
@@ -341,6 +405,9 @@
                </item>
                <item row="1" column="0" colspan="3">
                 <widget class="QTableWidget" name="constTbl">
+                 <property name="toolTip">
+                  <string>Double click a cell to edit it.</string>
+                 </property>
                  <property name="alternatingRowColors">
                   <bool>true</bool>
                  </property>
@@ -378,8 +445,23 @@
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item row="0" column="0" colspan="2">
             <widget class="QPlainTextEdit" name="dataTE">
+             <property name="toolTip">
+              <string>You can edit this area manually if you want.</string>
+             </property>
              <property name="lineWrapMode">
               <enum>QPlainTextEdit::NoWrap</enum>
              </property>
@@ -392,14 +474,14 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>105</width>
+               <width>191</width>
                <height>20</height>
               </size>
              </property>
             </spacer>
            </item>
            <item row="1" column="1">
-            <widget class="QPushButton" name="genBt">
+            <widget class="QPushButton" name="copyMainBt">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -410,17 +492,29 @@
               <enum>Qt::NoFocus</enum>
              </property>
              <property name="toolTip">
-              <string>Press CTRL+RETURN to press this button.</string>
+              <string>Copy to clipboard (CTRL+SHIFT+C)</string>
              </property>
              <property name="text">
-              <string>Generate to Clipboard</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resourcedirectory.qrc">
+               <normaloff>:/images/APPDATA/copyicon.png</normaloff>:/images/APPDATA/copyicon.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
           </layout>
           <zorder>dataTE</zorder>
-          <zorder>dataTE</zorder>
-          <zorder>genBt</zorder>
+          <zorder>copyMainBt</zorder>
           <zorder>horizontalSpacer_4</zorder>
          </widget>
         </item>
@@ -435,14 +529,40 @@
          <rect>
           <x>140</x>
           <y>150</y>
-          <width>71</width>
+          <width>231</width>
           <height>16</height>
          </rect>
         </property>
         <property name="text">
-         <string>Coming soon</string>
+         <string>To be implemented in a future version :P</string>
         </property>
        </widget>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QWidget" name="widget_7" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>10</y>
+         <width>401</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Note: This program version will ONLY create the main data dictionary right now.</string>
+       </property>
       </widget>
      </widget>
     </item>
@@ -453,7 +573,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>568</width>
+     <width>920</width>
      <height>21</height>
     </rect>
    </property>
@@ -469,6 +589,7 @@
     <property name="title">
      <string>Options</string>
     </property>
+    <addaction name="actionComing_soon"/>
    </widget>
    <addaction name="menuMenu"/>
    <addaction name="menuOptions"/>
@@ -488,6 +609,11 @@
     <string>Feedback</string>
    </property>
   </action>
+  <action name="actionComing_soon">
+   <property name="text">
+    <string>Coming soon...</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -498,6 +624,8 @@
   <tabstop>constTbl</tabstop>
   <tabstop>dataTbl</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resourcedirectory.qrc"/>
+ </resources>
  <connections/>
 </ui>
