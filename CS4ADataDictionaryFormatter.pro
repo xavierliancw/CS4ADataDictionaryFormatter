@@ -18,3 +18,6 @@ SOURCES += main.cpp\
 HEADERS  += zmainwindow.h
 
 FORMS    += zmainwindow.ui
+
+RESOURCES += \
+    resourcedirectory.qrc
